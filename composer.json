@@ -1,6 +1,6 @@
 {
     "name": "bshirey/hierarchical-config",
-    "description": "This is a Selenium + PHPUnit Framework and test skeleton",
+    "description": "Provides inheritance and hierarchical configuration tools.",
     "authors": [
         {
             "name": "Brian Shirey",
