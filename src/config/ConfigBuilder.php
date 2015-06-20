@@ -12,13 +12,9 @@ use HierarchicalConfig\GenericInterface;
  */
 class ConfigBuilder implements ConfigBuilderInterface
 {
-    public function build($context = null)
+    public function build($options = array())
     {
-        if (isset($context)) {
-            $this->options[ConfigInterface::KEY_CONTEXT] = $context;
-        }
-
-        $config = new GenericConfig($this->getOptions());
+        $config = new GenericConfig($options);
 
         return $config;
     }

@@ -49,7 +49,11 @@ class ConfigFactory
      */
     public function getConfig($context = null)
     {
-        return $this->getBuilder()->build($context);
+        if (isset($context)) {
+            $this->options[ConfigInterface::KEY_CONTEXT] = $context;
+        }
+
+        return $this->getBuilder()->build($this->options);
     }
 
     /**

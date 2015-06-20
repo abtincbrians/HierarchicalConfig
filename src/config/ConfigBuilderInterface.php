@@ -8,8 +8,8 @@ namespace HierarchicalConfig\Config;
 interface ConfigBuilderInterface
 {
     /**
-     * @param null $context
+     * @param array $options
      * @return mixed
      */
-    public function build($context = null);
+    public function build($options = array());
 }
