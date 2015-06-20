@@ -13,12 +13,11 @@ abstract class AbstractConfig implements ConfigInterface
      * @var
      */
     protected $child;
+
     /**
      * @var
      */
     protected $config;
-
-
     /**
      * @param $key
      * @param null $default
@@ -26,7 +25,6 @@ abstract class AbstractConfig implements ConfigInterface
      * @return mixed
      */
     abstract public function getConfiguredValue($key, $default = null, $allowOverride = true);
-
 
     /**
      * @param array $config

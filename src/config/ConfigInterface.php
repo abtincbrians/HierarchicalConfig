@@ -5,7 +5,7 @@ namespace HierarchicalConfig\Config;
  * Interface ConfigInterface
  * @package HierarchicalConfig\Config
  */
-Interface ConfigInterface
+interface ConfigInterface
 {
     const KEY_CONTEXT = 'context';
 

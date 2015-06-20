@@ -2,13 +2,19 @@
 namespace HierarchicalConfig\Config;
 
 /**
- * Class AbstractConfig
+ * Class GenericConfig
  * @package HierarchicalConfig\Config
  */
 class GenericConfig extends AbstractConfig
 {
+    /**
+     *
+     */
     const DEFAULT_RETURN = null;
 
+    /**
+     * @var null
+     */
     protected $returnValue = self::DEFAULT_RETURN;
 
     /**

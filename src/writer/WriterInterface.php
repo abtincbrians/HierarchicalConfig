@@ -5,7 +5,7 @@ namespace HierarchicalConfig\Writer;
  * Interface WriterInterface
  * @package HierarchicalConfig\Writer
  */
-Interface WriterInterface
+interface WriterInterface
 {
     /**
      * @param $value
