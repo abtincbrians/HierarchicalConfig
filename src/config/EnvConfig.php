@@ -7,6 +7,10 @@ namespace HierarchicalConfig\Config;
  */
 class EnvConfig extends AbstractConfig
 {
+    const DEFAULT_NAMESPACE = 'HCENV_';
+
+    protected $namespace = self::DEFAULT_NAMESPACE;
+
     /**
      * @param $key
      * @param null $default
@@ -27,6 +31,25 @@ class EnvConfig extends AbstractConfig
      */
     protected function makeKey($key)
     {
-        return 'TEST_' . strtoupper($key);
+        return $this->getNamespace() . strtoupper($key);
+    }
+
+    /**
+     * @param string $namespace
+     * @return $this
+     */
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
     }
 }
