@@ -1,0 +1,26 @@
+{
+    "name": "atlanticbt/heirarchichal-config",
+    "description": "This is a Selenium + PHPUnit Framework and test skeleton",
+    "authors": [
+        {
+            "name": "Brian Shirey",
+            "email": "brian.shirey@atlanticbt.com"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "phpunit/phpunit": "*",
+        "zendframework/zend-config": "2.3.*@dev",
+        "symfony/class-loader": "3.0.*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "HeirarchicalConfig\\": "src/",
+            "HeirarchicalConfig\\Config\\": "src/config/",
+            "HeirarchicalConfig\\Writer\\": "src/writer/",
+            "HeirarchicalConfig\\Helper\\": "src/helper/"
+        }
+    }
+}
