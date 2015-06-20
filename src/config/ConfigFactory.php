@@ -76,7 +76,7 @@ class ConfigFactory
     protected function initConfig($context = null)
     {
         if (isset($context)) {
-            $this->options[ConfigFactory::KEY_CONTEXT] = $context;
+            $this->options[ConfigInterface::KEY_CONTEXT] = $context;
         }
 
         $config = new GenericConfig($this->getOptions());
