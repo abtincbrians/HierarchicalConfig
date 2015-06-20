@@ -12,13 +12,13 @@ use HierarchicalConfig\Writer\Writer;
  * Class ConfigFactory
  * @package HierarchicalConfig\Config
  */
-class ConfigFactory
+abstract class ConfigFactory
 {
     // Hold an instance of the class
     /**
      * @var
      */
-    private static $instance;
+    protected static $instance;
 
     /**
      * @var array
@@ -29,13 +29,7 @@ class ConfigFactory
     /**
      * @return ConfigFactory
      */
-    public static function getInstance()
-    {
-        if (!isset(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
+    abstract public static function getInstance();
 
     /**
      * @param null $context
@@ -73,14 +67,5 @@ class ConfigFactory
      * @param string $context
      * @return ConfigInterface
      */
-    protected function initConfig($context = null)
-    {
-        if (isset($context)) {
-            $this->options[ConfigInterface::KEY_CONTEXT] = $context;
-        }
-
-        $config = new GenericConfig($this->getOptions());
-
-        return $config;
-    }
+    abstract protected function initConfig($context = null);
 }
