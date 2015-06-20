@@ -5,7 +5,7 @@ namespace HierarchicalConfig\Config;
  * Class AbstractConfig
  * @package HierarchicalConfig\Config
  */
-class GenericConfig implements AbstractInterface
+class GenericConfig extends AbstractConfig
 {
     const DEFAULT_RETURN = null;
 
