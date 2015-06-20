@@ -49,7 +49,7 @@ class ConfigFactory
      */
     public function getConfig($context = null)
     {
-        return $this->initConfig($context);
+        return $this->getBuilder()->build($context);
     }
 
     /**
