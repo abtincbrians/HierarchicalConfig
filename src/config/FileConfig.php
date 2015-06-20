@@ -40,7 +40,7 @@ class FileConfig extends AbstractConfig
     protected function doSetup($config = array())
     {
         // Catch the configuration file path
-        if (isset($options['configurationFilePath'])) {
+        if (isset($config['configurationFilePath'])) {
             $this->configFilePath = $config['configurationFilePath'];
         } else {
             // Also consider throwing an exception here instead
@@ -49,7 +49,7 @@ class FileConfig extends AbstractConfig
         }
 
         // Catch the context
-        if (isset($options[ConfigInterface::KEY_CONTEXT])) {
+        if (isset($config[ConfigInterface::KEY_CONTEXT])) {
             $this->context = $config[ConfigInterface::KEY_CONTEXT];
         }
 
