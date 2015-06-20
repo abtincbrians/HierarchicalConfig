@@ -6,30 +6,42 @@ use HierarchicalConfig\Config\GenericConfig;
 use HierarchicalConfig\Config\GlobalsConfig;
 use HierarchicalConfig\Config\EnvConfig;
 use HierarchicalConfig\Config\FileConfig;
+use HierarchicalConfig\Config\ConfigBuilder;
 use HierarchicalConfig\Writer\Writer;
 
 /**
  * Class ConfigFactory
  * @package HierarchicalConfig\Config
  */
-abstract class ConfigFactory
+class ConfigFactory
 {
     // Hold an instance of the class
     /**
      * @var
      */
-    protected static $instance;
+    private static $instance;
 
     /**
      * @var array
      */
     protected $options = array();
 
+    /**
+     * @var ConfigBuilder
+     */
+    protected $builder;
+
     // The singleton method
     /**
      * @return ConfigFactory
      */
-    abstract public static function getInstance();
+    public static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     /**
      * @param null $context
@@ -59,13 +71,25 @@ abstract class ConfigFactory
     }
 
     /**
-     * You need to call setup before using this baby.
-     *
-     * Override this function to create your application's custom
-     * configuration setup
-     *
-     * @param string $context
-     * @return ConfigInterface
+     * @param ConfigBuilder $builder
+     * @return $this
      */
-    abstract protected function initConfig($context = null);
+    public function setBuilder($builder)
+    {
+        $this->builder = $builder;
+
+        return $this;
+    }
+
+    /**
+     * @return ConfigBuilder
+     */
+    public function getBuilder()
+    {
+        if (!isset($this->builder)) {
+            $this->builder = new ConfigBuilder();
+        }
+
+        return $this->builder;
+    }
 }
