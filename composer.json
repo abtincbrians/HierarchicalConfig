@@ -1,5 +1,5 @@
 {
-    "name": "bshirey/heirarchichal-config",
+    "name": "bshirey/hierarchical-config",
     "description": "This is a Selenium + PHPUnit Framework and test skeleton",
     "authors": [
         {
@@ -17,10 +17,10 @@
     },
     "autoload": {
         "psr-4": {
-            "HeirarchicalConfig\\": "src/",
-            "HeirarchicalConfig\\Config\\": "src/config/",
-            "HeirarchicalConfig\\Writer\\": "src/writer/",
-            "HeirarchicalConfig\\Helper\\": "src/helper/"
+            "HierarchicalConfig\\": "src/",
+            "HierarchicalConfig\\Config\\": "src/config/",
+            "HierarchicalConfig\\Writer\\": "src/writer/",
+            "HierarchicalConfig\\Helper\\": "src/helper/"
         }
     }
 }
