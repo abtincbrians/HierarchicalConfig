@@ -6,7 +6,7 @@
  * Time: 4:49 PM
  */
 
-namespace tests;
+namespace Tests;
 
 use HierarchicalConfig\Config\GenericConfig;
 use HierarchicalConfig\Filter\Filter;

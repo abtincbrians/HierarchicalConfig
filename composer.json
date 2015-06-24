@@ -21,7 +21,8 @@
             "HierarchicalConfig\\Config\\": "src/config/",
             "HierarchicalConfig\\Writer\\": "src/writer/",
             "HierarchicalConfig\\Helper\\": "src/helper/",
-            "HierarchicalConfig\\Filter\\": "src/filter/"
+            "HierarchicalConfig\\Filter\\": "src/filter/",
+            "HierarchicalConfig\\Stub\\": "src/stub/"
         }
     }
 }
