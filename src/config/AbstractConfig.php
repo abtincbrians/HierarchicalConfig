@@ -1,6 +1,7 @@
 <?php
 namespace HierarchicalConfig\Config;
 
+use HierarchicalConfig\Filterable;
 use Zend\Config\Config;
 
 /**
@@ -9,6 +10,8 @@ use Zend\Config\Config;
  */
 abstract class AbstractConfig implements ConfigInterface
 {
+    use Filterable;
+
     /**
      * @var
      */
@@ -54,9 +57,13 @@ abstract class AbstractConfig implements ConfigInterface
     protected function deferToChild($key, $default = null, $allowOverride = true)
     {
         if (isset($this->child) && $allowOverride) {
-            return $this->child->getConfiguredValue($key, $default, $allowOverride);
+            return
+                $this->applyFilters(
+                    $key,
+                    $this->child->getConfiguredValue($key, $default, $allowOverride)
+                );
         } else {
-            return $default;
+            return $this->applyFilters($key, $default);
         }
     }
 }
