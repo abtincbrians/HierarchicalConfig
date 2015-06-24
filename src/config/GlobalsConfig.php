@@ -1,6 +1,7 @@
 <?php
 namespace HierarchicalConfig\Config;
 
+use HierarchicalConfig\Config\EnvConfig as EnvConfig;
 /**
  * Class GlobalsConfig
  * @package HierarchicalConfig\Config
