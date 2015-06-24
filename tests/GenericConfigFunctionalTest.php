@@ -12,8 +12,17 @@ use HierarchicalConfig\Config\GenericConfig;
 use HierarchicalConfig\Filter\Filter;
 use HierarchicalConfig\Filter\FilterAlwaysTrue;
 
-class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
-
+/**
+ * Class GenericConfigFunctionalTest
+ * @package tests
+ */
+class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * This tests that GenericConfig respects the default value provided
+     * when a config key doesn't exist.
+     *
+     */
     public function testGenericConfigReturnsDefault()
     {
         $config = new GenericConfig(array('test' => false));
@@ -22,6 +31,9 @@ class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
         self::assertEquals($value, true);
     }
 
+    /**
+     * This tests GenericConfig respects the allowoverride = false argument
+     */
     public function testGenericConfigAbidesByAllowOverrideFalse()
     {
         $config = new GenericConfig(array('test' => false));
@@ -30,6 +42,9 @@ class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
         self::assertEquals($value, false);
     }
 
+    /**
+     * This tests the generic config.
+     */
     public function testGenericConfigReturnsTrue()
     {
         $config = new GenericConfig(array('test' => true));
@@ -38,6 +53,9 @@ class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
         self::assertEquals($value, true);
     }
 
+    /**
+     * This tests filter integration.
+     */
     public function testGenericConfigStackReturnsTrue()
     {
 
@@ -55,6 +73,9 @@ class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
         self::assertEquals($value, true);
     }
 
+    /**
+     * This tests filter integration with config.
+     */
     public function testFilteredGenericConfigReturnsTrue()
     {
         $config = new GenericConfig(array('test' => false));
@@ -67,6 +88,9 @@ class GenericConfigFunctionalTest extends \PHPUnit_Framework_TestCase {
         self::assertEquals($value, true);
     }
 
+    /**
+     * This tests filter integration with config stack.
+     */
     public function testFilteredGenericConfigStackReturnsTrue()
     {
         $config = new GenericConfig(array('test' => false));
