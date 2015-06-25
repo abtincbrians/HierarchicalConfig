@@ -57,4 +57,3 @@ class FileConfigFunctionalTest extends \PHPUnit_Framework_TestCase
         return PHPUNIT_TEST_DIR . '/config/';
     }
 }
- 
