@@ -22,6 +22,7 @@
             "HierarchicalConfig\\Writer\\": "src/writer/",
             "HierarchicalConfig\\Helper\\": "src/helper/",
             "HierarchicalConfig\\Filter\\": "src/filter/",
+            "HierarchicalConfig\\Exception\\": "src/exception/",
             "HierarchicalConfig\\Stub\\": "src/stub/"
         }
     }

@@ -1,6 +1,7 @@
 <?php
 namespace HierarchicalConfig\Config;
 
+use HierarchicalConfig\Exception\FileNotFoundException;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -9,6 +10,11 @@ use Zend\Stdlib\ArrayUtils;
  */
 class FileConfig extends AbstractConfig
 {
+    /**
+     * Configuration key that defines where the file is located.
+     */
+    const CONFIG_KEY_FILE_PATH = 'configurationFilePath';
+
     /**
      * @var
      */
@@ -40,8 +46,8 @@ class FileConfig extends AbstractConfig
     protected function doSetup($config = array())
     {
         // Catch the configuration file path
-        if (isset($config['configurationFilePath'])) {
-            $this->configFilePath = $config['configurationFilePath'];
+        if (isset($config[self::CONFIG_KEY_FILE_PATH])) {
+            $this->configFilePath = $config[self::CONFIG_KEY_FILE_PATH];
         } else {
             // Also consider throwing an exception here instead
             // of failing silently
