@@ -11,8 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "phpunit/phpunit": "*",
-        "zendframework/zend-config": "2.3.*@dev"
+        "phpunit/phpunit": "4.7.5",
+        "zendframework/zend-config": "2.5.1"
     },
     "autoload": {
         "psr-4": {
