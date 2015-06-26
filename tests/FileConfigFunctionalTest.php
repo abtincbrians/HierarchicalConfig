@@ -50,6 +50,29 @@ class FileConfigFunctionalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     *
+     */
+    public function testReload()
+    {
+        $fileConfig =
+            new FileConfig(
+                array(
+                    FileConfig::CONFIG_KEY_FILE_PATH => $this->getTestConfigDirectory() . 'xyz'
+                )
+            );
+
+        $originalValue = $fileConfig->getConfiguredValue('name', null, true);
+
+        $fileConfig->setConfigFilePath($this->getTestConfigDirectory() . 'test/');
+        $fileConfig->reload();
+
+        $newValue = $fileConfig->getConfiguredValue('name', null, true);
+
+        self::assertNotEquals($originalValue, $newValue);
+        self::assertEquals($newValue, 'secondary/config');
+    }
+
+    /**
      * @return string
      */
     protected function getTestConfigDirectory()
