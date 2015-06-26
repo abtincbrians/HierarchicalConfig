@@ -21,6 +21,7 @@ abstract class AbstractConfig implements ConfigInterface
      * @var
      */
     protected $config;
+
     /**
      * @param $key
      * @param null $default
@@ -34,7 +35,40 @@ abstract class AbstractConfig implements ConfigInterface
      */
     public function __construct($config = array())
     {
-        $this->config = new Config($config);
+        $this->init($config);
+    }
+
+    /**
+     * Override in child if you need to override core config setup.
+     *
+     * @param array $config
+     * @return array
+     */
+    protected function doSetup($config = array())
+    {
+        return $config;
+    }
+
+    /**
+     * Override in child if you need to manipulate the starting config.
+     *
+     * @param array $config
+     * @return array
+     */
+    protected function doPreSetup($config = array())
+    {
+        return $config;
+    }
+
+    /**
+     * Override in child if you need to manipulate the final config.
+     *
+     * @param array $config
+     * @return array
+     */
+    protected function doPostSetup($config = array())
+    {
+        return $config;
     }
 
     /**
@@ -65,5 +99,18 @@ abstract class AbstractConfig implements ConfigInterface
         } else {
             return $this->applyFilters($key, $default);
         }
+    }
+
+    /**
+     * @param array $config
+     */
+    protected function init($config = array())
+    {
+        // Allow pre & post setup operations
+        $config = $this->doPreSetup($config);
+        $config = $this->doSetup($config);
+        $config = $this->doPostSetup($config);
+
+        $this->config = new Config($config);
     }
 }

@@ -26,65 +26,6 @@ class FileConfig extends AbstractConfig
     protected $context = null;
 
     /**
-     * @param array $config
-     */
-    public function __construct($config = array())
-    {
-        $config = $this->doPreSetup($config);
-        $config = $this->doSetup($config);
-        $config = $this->doPostSetup($config);
-
-        parent::__construct($config);
-    }
-
-    /**
-     * Override in child if you need to override core config setup.
-     *
-     * @param array $config
-     * @return array
-     */
-    protected function doSetup($config = array())
-    {
-        // Catch the configuration file path
-        if (isset($config[self::CONFIG_KEY_FILE_PATH])) {
-            $this->configFilePath = $config[self::CONFIG_KEY_FILE_PATH];
-        } else {
-            // Also consider throwing an exception here instead
-            // of failing silently
-            return $config;
-        }
-
-        // Catch the context
-        if (isset($config[ConfigInterface::KEY_CONTEXT])) {
-            $this->context = $config[ConfigInterface::KEY_CONTEXT];
-        }
-
-        return $this->readConfigurationFiles();
-    }
-
-    /**
-     * Override in child if you need to manipulate the starting config.
-     *
-     * @param array $config
-     * @return array
-     */
-    protected function doPreSetup($config = array())
-    {
-        return $config;
-    }
-
-    /**
-     * Override in child if you need to manipulate the final config.
-     *
-     * @param array $config
-     * @return array
-     */
-    protected function doPostSetup($config = array())
-    {
-        return $config;
-    }
-
-    /**
      * @param $key
      * @param null $default
      * @param bool $allowOverride
@@ -98,22 +39,20 @@ class FileConfig extends AbstractConfig
     }
 
     /**
+     * Reload the configuration from file.
      *
-     * @return array
+     * Apply this after changing context or the file path.
      */
-    protected function readConfigurationFiles()
+    public function reload()
     {
-        $config  = array();
-
-        // Load global configs (configs marked .global)
-        foreach (glob($this->getConfigFilePath() . "{,*}.php", GLOB_BRACE) as $filename) {
-            if (is_readable($filename)) {
-                $tempConfig = include $filename;
-                $config     = ArrayUtils::merge($config, $tempConfig);
-            }
-        }
-
-        return $config;
+        // Rebuild the configuration data
+        // Re-init
+        $this->init(
+            array(
+                self::CONFIG_KEY_FILE_PATH   => $this->getConfigFilePath(),
+                ConfigInterface::KEY_CONTEXT => $this->getContext(),
+            )
+        );
     }
 
     /**
@@ -154,5 +93,49 @@ class FileConfig extends AbstractConfig
     public function getContext()
     {
         return $this->context;
+    }
+
+    /**
+     *
+     * @return array
+     */
+    protected function readConfigurationFiles()
+    {
+        $config  = array();
+
+        // Load global configs (configs marked .global)
+        foreach (glob($this->getConfigFilePath() . "{,*}.php", GLOB_BRACE) as $filename) {
+            if (is_readable($filename)) {
+                $tempConfig = include $filename;
+                $config     = ArrayUtils::merge($config, $tempConfig);
+            }
+        }
+
+        return $config;
+    }
+
+    /**
+     * Override in child if you need to override core config setup.
+     *
+     * @param array $config
+     * @return array
+     */
+    protected function doSetup($config = array())
+    {
+        // Catch the configuration file path
+        if (isset($config[self::CONFIG_KEY_FILE_PATH])) {
+            $this->configFilePath = $config[self::CONFIG_KEY_FILE_PATH];
+        } else {
+            // Also consider throwing an exception here instead
+            // of failing silently
+            return $config;
+        }
+
+        // Catch the context
+        if (isset($config[ConfigInterface::KEY_CONTEXT])) {
+            $this->context = $config[ConfigInterface::KEY_CONTEXT];
+        }
+
+        return $this->readConfigurationFiles();
     }
 }
