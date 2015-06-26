@@ -51,3 +51,12 @@ Finally, you must make your configurable classes / objects use the HierarchicalC
        ...
 
 ```
+
+# How To Run The Tests
+======================
+
+This glosses over the details a bit. Needless to say you need to have composer installed as well as phpunit and any dependencies.
+
+* Run composer install if you haven't already. This installs project dependencies.
+* Run phpunit.
+* Let the tests run.
